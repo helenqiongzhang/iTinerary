@@ -7,30 +7,33 @@ export class Header extends Component {
     super(props);
     this.state = {
       isModalVisible: false,
-      text: ''
-    }
+      text: '',
+    };
   }
 
   closeModal() {
-    this.setState({ isModalVisible: !this.state.isModalVisible })
+    this.setState({ isModalVisible: !this.state.isModalVisible });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>
-          {this.props.text}
-        </Text>
+        <Text style={styles.text}>{this.props.text}</Text>
 
-        <TouchableOpacity onPress={() => this.setState({ isModalVisible: true })} style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => this.setState({ isModalVisible: true })}
+          style={styles.buttonContainer}
+        >
           <Image
             style={styles.button}
             source={require('./../assets/images/NewPost.png')}
           />
         </TouchableOpacity>
 
-        <CreatePost isModalVisible={this.state.isModalVisible} closeModal={() => this.closeModal()} />
-
+        <CreatePost
+          isModalVisible={this.state.isModalVisible}
+          closeModal={() => this.closeModal()}
+        />
       </View>
     );
   }
@@ -43,20 +46,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 30,
     borderBottomWidth: 1,
-    borderBottomColor: '#dadada'
+    borderBottomColor: '#dadada',
   },
   text: {
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    flex: 1
+    flex: 1,
   },
   button: {
     width: 30,
     height: 30,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   buttonContainer: {
-    paddingRight: 5
-  }
-})
+    paddingRight: 5,
+  },
+});
