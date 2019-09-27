@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button, ImageBackground } from 'react-native';
-import { MapView } from 'react-native-maps';
+import MapView from 'react-native-maps';
 
 export default class MapScreen extends Component {
   static navigationOptions = {
@@ -8,14 +8,15 @@ export default class MapScreen extends Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.title}>iTinerary</Text>
-        </View>
-      </View>
+      <MapView
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
     );
   }
 }
