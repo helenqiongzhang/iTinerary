@@ -1,5 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   Platform,
@@ -9,29 +9,36 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  createAppContainer,
+} from 'react-navigation';
 import { Post } from '../components/Post';
 import { Header } from '../components/Header';
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Header text="Home" />
-      <ScrollView
-        style={styles.container}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-      </ScrollView>
-
-    </View>
-  );
+export default class HomeScreen extends Component {
+  static navigationOptions = {
+    header: null,
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <Header text="iTinerary" style={styles.header} />
+        <ScrollView style={styles.container}>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 HomeScreen.navigationOptions = {
@@ -74,11 +81,14 @@ function handleHelpPress() {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     margin: 0,
-    padding: 0
+    padding: 0,
   },
   developmentModeText: {
     marginBottom: 20,

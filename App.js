@@ -4,7 +4,7 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
+import { AppEntry } from './components/AppEntry';
 import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
@@ -21,9 +21,7 @@ export default function App(props) {
   } else {
     return (
       <View style={styles.container}>
-        <View style={{ backgroundColor: 'black', height: 20 }}></View>
-        {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-        <AppNavigator />
+        <AppEntry />
       </View>
     );
   }
