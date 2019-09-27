@@ -7,8 +7,7 @@ import {
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-// import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MapScreen from '../screens/MapScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -42,12 +41,12 @@ HomeStack.navigationOptions = {
 //   ),
 // };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const MapStack = createStackNavigator({
+  Map: MapScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+MapStack.navigationOptions = {
+  tabBarLabel: 'Map',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -59,5 +58,5 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator({
   HomeStack,
   // LinksStack,
-  SettingsStack,
+  MapStack,
 });
