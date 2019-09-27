@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Button,
 } from 'react-native';
+import { FirebaseWrapper } from '../firebase/firebase';
 
 export class CreatePost extends Component {
   constructor(props) {
@@ -17,9 +18,15 @@ export class CreatePost extends Component {
     };
   }
 
-  createPost() {
-    console.log('ayoooo', this.state.text);
-    // make call to Firebase
+  async createPost() {
+    try {
+      await FirebaseWrapper.GetInstance().CreateNewDocument('posts', {
+        text: this.state.text,
+      });
+      this.props.closeModal();
+    } catch (error) {
+      console.log('Something went wrong creating post', error);
+    }
   }
 
   render() {
@@ -48,13 +55,13 @@ export class CreatePost extends Component {
             multiline={true}
             numberOfLines={4}
             onChangeText={text => this.setState({ text })}
-            placeholder="Tell your friends something here..."
+            placeholder="start planning here..."
             value={this.state.text}
             style={styles.input}
           />
         </View>
 
-        <Button title="Create Post" onPress={() => this.createPost()} />
+        <Button title="Create Event" onPress={() => this.createPost()} />
       </Modal>
     );
   }

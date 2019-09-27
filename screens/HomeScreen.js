@@ -16,25 +16,40 @@ import {
 } from 'react-navigation';
 import { Post } from '../components/Post';
 import { Header } from '../components/Header';
+import { FirebaseWrapper } from '../firebase/firebase';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
     header: null,
   };
+
+  constructor() {
+    super();
+    this.state = {
+      posts: [],
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      await FirebaseWrapper.GetInstance().SetupCollectionListener(
+        'posts',
+        posts => this.setState({ posts })
+      );
+    } catch (error) {
+      console.log('Something wrong with fetching posts', error);
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Header text="iTinerary" style={styles.header} />
         <ScrollView style={styles.container}>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {this.state.posts &&
+            this.state.posts.map(post => (
+              <Post postInfo={post} key={post.id} />
+            ))}
         </ScrollView>
       </View>
     );
