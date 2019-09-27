@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import { CreatePost } from './CreatePost';
 
 export class Header extends Component {
@@ -18,7 +25,14 @@ export class Header extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>{this.props.text}</Text>
+        <Image
+          style={{ width: 300, height: 90, borderRadius: 25 }}
+          source={{
+            uri:
+              'https://cdn.dribbble.com/users/187833/screenshots/5290894/canjet-02.gif',
+          }}
+        />
+        {/* <Text style={styles.text}>{this.props.text}</Text> */}
 
         <TouchableOpacity
           onPress={() => this.setState({ isModalVisible: true })}
@@ -41,7 +55,7 @@ export class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
+    height: 100,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 30,

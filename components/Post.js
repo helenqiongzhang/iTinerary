@@ -6,12 +6,13 @@ export function Post(props) {
   return (
     <View style={styles.postContainer}>
       <View style={styles.container}>
-        {/* <Image
+        <Image
           style={{ width: 50, height: 50, borderRadius: 25 }}
-          source={{ uri: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/prince-1561086744.jpg?resize=320:*" }} /> */}
+          source={require('./../assets/images/robot-dev.png')}
+        />
 
         <View style={styles.dateUserContainer}>
-          <Text style={styles.username}>Username</Text>
+          <Text style={styles.username}>Eventname</Text>
           <Text> 26/09/19</Text>
         </View>
       </View>
