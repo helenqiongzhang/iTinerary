@@ -12,11 +12,14 @@ export function Post(props) {
         />
 
         <View style={styles.dateUserContainer}>
-          <Text style={styles.username}>EventName</Text>
-          <Text> 26/09/19</Text>
+          <Text style={styles.username}>{props.postInfo.eventName}</Text>
+          <Text style={styles.postText}> {props.postInfo.address} </Text>
+
+          <Text style={styles.postText}>
+            {new Date(props.postInfo.chosenDate.toDate()).toDateString()}
+          </Text>
         </View>
       </View>
-
       <Text style={styles.postText}>{props.postInfo.text} </Text>
     </View>
   );

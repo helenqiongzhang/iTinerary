@@ -15,7 +15,8 @@ export class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      eventName: '',
+      address: '',
       chosenDate: new Date(),
     };
     this.setDate = this.setDate.bind(this);
@@ -26,7 +27,9 @@ export class CreatePost extends Component {
   async createPost() {
     try {
       await FirebaseWrapper.GetInstance().CreateNewDocument('posts', {
-        text: this.state.text,
+        eventName: this.state.eventName,
+        address: this.state.address,
+        chosenDate: this.state.chosenDate,
       });
       this.props.closeModal();
     } catch (error) {
@@ -59,8 +62,17 @@ export class CreatePost extends Component {
           <TextInput
             multiline={true}
             numberOfLines={4}
-            onChangeText={text => this.setState({ text })}
-            placeholder="start planning here..."
+            onChangeText={eventName => this.setState({ eventName })}
+            placeholder="Event name here..."
+            value={this.state.eventName}
+            style={styles.input}
+          />
+
+          <TextInput
+            multiline={true}
+            numberOfLines={4}
+            onChangeText={address => this.setState({ address })}
+            placeholder="Event address here..."
             value={this.state.text}
             style={styles.input}
           />
