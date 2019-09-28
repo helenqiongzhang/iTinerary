@@ -12,16 +12,12 @@ export function Post(props) {
         />
 
         <View style={styles.dateUserContainer}>
-          <Text style={styles.username}>Eventname</Text>
+          <Text style={styles.username}>EventName</Text>
           <Text> 26/09/19</Text>
         </View>
       </View>
 
-      <Text style={styles.postText}>
-        Id eiusmod aliquip nulla reprehenderit. Sit nostrud ad ipsum magna
-        tempor enim labore consequat ut. Occaecat do cupidatat velit elit do sit
-        enim ut labore.{' '}
-      </Text>
+      <Text style={styles.postText}>{props.postInfo.text} </Text>
     </View>
   );
 }

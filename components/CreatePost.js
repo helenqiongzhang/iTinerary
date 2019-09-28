@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  DatePickerIOS,
   Modal,
   TextInput,
   View,
@@ -8,18 +9,29 @@ import {
   StyleSheet,
   Button,
 } from 'react-native';
+import { FirebaseWrapper } from '../firebase/firebase';
 
 export class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
+      chosenDate: new Date(),
     };
+    this.setDate = this.setDate.bind(this);
   }
-
-  createPost() {
-    console.log('ayoooo', this.state.text);
-    // make call to Firebase
+  setDate(newDate) {
+    this.setState({ chosenDate: newDate });
+  }
+  async createPost() {
+    try {
+      await FirebaseWrapper.GetInstance().CreateNewDocument('posts', {
+        text: this.state.text,
+      });
+      this.props.closeModal();
+    } catch (error) {
+      console.log('Something went wrong creating post', error);
+    }
   }
 
   render() {
@@ -48,13 +60,18 @@ export class CreatePost extends Component {
             multiline={true}
             numberOfLines={4}
             onChangeText={text => this.setState({ text })}
-            placeholder="Tell your friends something here..."
+            placeholder="start planning here..."
             value={this.state.text}
             style={styles.input}
           />
         </View>
-
-        <Button title="Create Post" onPress={() => this.createPost()} />
+        <View style={styles.container}>
+          <DatePickerIOS
+            date={this.state.chosenDate}
+            onDateChange={this.setDate}
+          />
+        </View>
+        <Button title="Create Event" onPress={() => this.createPost()} />
       </Modal>
     );
   }
@@ -62,7 +79,9 @@ export class CreatePost extends Component {
 
 const styles = StyleSheet.create({
   input: {
-    height: 80,
+    height: 120,
+    marginLeft: 10,
+    fontSize: 30,
   },
   close: {
     width: 40,
@@ -70,5 +89,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginRight: 10,
     marginBottom: 10,
+    marginTop: 10,
   },
 });

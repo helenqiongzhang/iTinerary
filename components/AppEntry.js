@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button, ImageBackground } from 'react-native';
+import { firebaseConfig } from '../firebase/config';
+import { FirebaseWrapper } from '../firebase/firebase';
+
 export class AppEntry extends Component {
   static navigationOptions = {
     header: null,
@@ -7,6 +10,7 @@ export class AppEntry extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    FirebaseWrapper.GetInstance().initialize(firebaseConfig);
 
     return (
       <ImageBackground

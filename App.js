@@ -8,7 +8,6 @@ const MainNavigator = createStackNavigator({
   Home: { screen: AppEntry },
   AppNavigator: { screen: AppNavigator },
 });
-
 const App = createAppContainer(MainNavigator);
 
 export default App;
