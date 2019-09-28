@@ -35,7 +35,7 @@ export class FirebaseWrapper {
     try {
       await this._firestore
         .collection(collectionPath)
-        .orderBy('createdAt', 'desc')
+        .orderBy('chosenDate', 'asc')
         .onSnapshot(querySnapshot => {
           let container = [];
           querySnapshot.forEach(doc => {
