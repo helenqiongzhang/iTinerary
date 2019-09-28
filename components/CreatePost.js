@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  DatePickerIOS,
   Modal,
   TextInput,
   View,
@@ -15,9 +16,13 @@ export class CreatePost extends Component {
     super(props);
     this.state = {
       text: '',
+      chosenDate: new Date(),
     };
+    this.setDate = this.setDate.bind(this);
   }
-
+  setDate(newDate) {
+    this.setState({ chosenDate: newDate });
+  }
   async createPost() {
     try {
       await FirebaseWrapper.GetInstance().CreateNewDocument('posts', {
@@ -60,7 +65,12 @@ export class CreatePost extends Component {
             style={styles.input}
           />
         </View>
-
+        <View style={styles.container}>
+          <DatePickerIOS
+            date={this.state.chosenDate}
+            onDateChange={this.setDate}
+          />
+        </View>
         <Button title="Create Event" onPress={() => this.createPost()} />
       </Modal>
     );
@@ -69,7 +79,9 @@ export class CreatePost extends Component {
 
 const styles = StyleSheet.create({
   input: {
-    height: 80,
+    height: 120,
+    marginLeft: 10,
+    fontSize: 30,
   },
   close: {
     width: 40,
@@ -77,5 +89,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginRight: 10,
     marginBottom: 10,
+    marginTop: 10,
   },
 });

@@ -3,10 +3,6 @@ import { Text, View, Image, StyleSheet, Button } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 export function Post(props) {
-  {
-    console.log('we are here');
-  }
-
   return (
     <View style={styles.postContainer}>
       <View style={styles.container}>
