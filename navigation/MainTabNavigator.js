@@ -8,7 +8,7 @@ import {
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
-import LinksScreen from '../screens/LinksScreen';
+// import LinksScreen from '../screens/LinksScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -28,19 +28,19 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
+// const LinksStack = createStackNavigator({
+//   Links: LinksScreen,
+// });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
+// LinksStack.navigationOptions = {
+//   tabBarLabel: 'Links',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+//     />
+//   ),
+// };
 
 const MapStack = createStackNavigator({
   Map: MapScreen,
@@ -58,6 +58,6 @@ MapStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  // LinksStack,
   MapStack,
 });

@@ -17,7 +17,7 @@ export class FirebaseWrapper {
     }
   }
   static GetInstance() {
-    if (null == this._firebaseWrapperInstance) {
+    if (!this._firebaseWrapperInstance) {
       this._firebaseWrapperInstance = new FirebaseWrapper();
     }
     return this._firebaseWrapperInstance;
@@ -34,7 +34,7 @@ export class FirebaseWrapper {
 
   async UpdateDocument(id, doc) {
     try {
-      const postRef = firebase.database().ref(`posts/${id}`);
+      const postRef = this._firestore.collection('posts').doc(id);
       await postRef.update(doc);
     } catch (error) {
       console.log('Something wrong with updateDocument', error);
