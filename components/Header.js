@@ -40,7 +40,7 @@ export class Header extends Component {
         >
           <Image
             style={styles.button}
-            source={require('./../assets/images/NewPost.png')}
+            source={{ uri: 'https://img.icons8.com/clouds/150/000000/add.png' }}
           />
         </TouchableOpacity>
 
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    width: 30,
-    height: 30,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
   },
   buttonContainer: {

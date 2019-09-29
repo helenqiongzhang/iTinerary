@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, ImageBackground } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { firebaseConfig } from '../firebase/config';
 import { FirebaseWrapper } from '../firebase/firebase';
 
@@ -22,13 +30,18 @@ export class AppEntry extends Component {
       >
         <View style={styles.container}>
           <View>
-            <Text style={styles.title}>iTinerary</Text>
-            <Button
-              color="#00D3FF"
-              title="ADVENTURE awaits"
-              style={styles.loginScreenButton}
-              onPress={() => navigate('AppNavigator')}
+            {/* <Text style={styles.title}>iTinerary</Text> */}
+            <Image
+              style={styles.title}
+              source={require('./../assets/images/logo4.png')}
             />
+
+            <TouchableOpacity onPress={() => navigate('AppNavigator')}>
+              <Image
+                style={styles.button}
+                source={require('./../assets/images/logo5.png')}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
@@ -40,7 +53,16 @@ const styles = StyleSheet.create({
   title: {
     paddingTop: 50,
     marginTop: 250,
-    marginBottom: 20,
+    marginBottom: 0,
+    color: '#FFF8F8',
+    fontSize: 50,
+    lineHeight: 19,
+    textAlign: 'center',
+  },
+  button: {
+    paddingTop: 50,
+    marginTop: 0,
+    marginBottom: 50,
     color: '#FFF8F8',
     fontSize: 50,
     lineHeight: 19,
