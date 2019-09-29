@@ -42,8 +42,6 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    console.log('this.state.posts😅😅😅😅😅', this.state.posts);
-
     return (
       <View style={styles.container}>
         <Header text="iTinerary" style={styles.header} />

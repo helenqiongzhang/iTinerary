@@ -31,6 +31,16 @@ export class FirebaseWrapper {
       console.log('Something wrong with createnewdocument', error);
     }
   }
+
+  async UpdateDocument(id, doc) {
+    try {
+      const postRef = firebase.database().ref(`posts/${id}`);
+      await postRef.update(doc);
+    } catch (error) {
+      console.log('Something wrong with updateDocument', error);
+    }
+  }
+
   async SetupCollectionListener(collectionPath, callback) {
     try {
       await this._firestore

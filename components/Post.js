@@ -40,13 +40,12 @@ export class Post extends Component {
           <View style={styles.dateUserContainer}>
             <Text style={styles.username}>{this.props.postInfo.eventName}</Text>
             <Text style={styles.postText}> {this.props.postInfo.address} </Text>
-
             <Text style={styles.postText}>
               {new Date(this.props.postInfo.chosenDate.toDate()).toDateString()}
             </Text>
           </View>
         </View>
-        <Text style={styles.postText}>{this.props.postInfo.text} </Text>
+        <Text style={styles.postText}>{this.props.postInfo.note} </Text>
         <TouchableOpacity
           onPress={() => this.setState({ isModalVisible: true })}
           style={styles.buttonContainer}
@@ -58,6 +57,7 @@ export class Post extends Component {
         </TouchableOpacity>
 
         <EditPost
+          postInfo={this.props.postInfo}
           isModalVisible={this.state.isModalVisible}
           closeModal={() => this.closeModal()}
         />
