@@ -1,19 +1,5 @@
-import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator,
-  createAppContainer,
-} from 'react-navigation';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { Post } from '../components/Post';
 import { Header } from '../components/Header';
 import { FirebaseWrapper } from '../firebase/firebase';

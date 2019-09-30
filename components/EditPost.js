@@ -7,9 +7,13 @@ import {
   TouchableHighlight,
   Image,
   StyleSheet,
+  TouchableOpacity,
+  Text,
   Button,
 } from 'react-native';
 import { FirebaseWrapper } from '../firebase/firebase';
+import { GooglePlaceApiClient } from '../geo/google-place';
+import Autocomplete from 'react-native-autocomplete-input';
 
 //just copied from createPost, need to change content to updatePost
 export class EditPost extends Component {
@@ -18,10 +22,14 @@ export class EditPost extends Component {
     this.state = {
       eventName: this.props.postInfo.eventName,
       address: this.props.postInfo.address,
+      // eslint-disable-next-line react/no-unused-state
+      location: this.props.postInfo.location || {},
       chosenDate: new Date(this.props.postInfo.chosenDate.toDate()),
       note: this.props.postInfo.note,
+      placeSuggestions: [],
     };
     this.setDate = this.setDate.bind(this);
+    this.placeClient = new GooglePlaceApiClient();
   }
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
@@ -33,6 +41,7 @@ export class EditPost extends Component {
         {
           eventName: this.state.eventName,
           address: this.state.address,
+          location: this.state.location,
           chosenDate: this.state.chosenDate,
           note: this.state.note,
         }
@@ -77,18 +86,42 @@ export class EditPost extends Component {
           <TextInput
             multiline={true}
             numberOfLines={4}
-            onChangeText={address => this.setState({ address })}
-            placeholder="Event address here..."
-            value={this.state.address}
-            style={styles.input}
-          />
-          <TextInput
-            multiline={true}
-            numberOfLines={4}
             onChangeText={note => this.setState({ note })}
-            placeholder="Event address here..."
+            placeholder="Any notes on the event."
             value={this.state.note}
             style={styles.input}
+          />
+        </View>
+        <View style={styles.autocompletesContainer}>
+          <Autocomplete
+            data={this.state.placeSuggestions}
+            onChangeText={async text => {
+              const placeSuggestions = await this.placeClient.searchPlace(text);
+              this.setState({
+                placeSuggestions,
+              });
+            }}
+            defaultValue={this.state.address}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={async () => {
+                    const result = await this.placeClient.getPlaceById(
+                      item.id,
+                      item
+                    );
+                    this.setState({
+                      address: result.name,
+                      location: result.location || {},
+                      placeSuggestions: [],
+                    });
+                  }}
+                >
+                  <Text style={{ textAlign: 'center' }}>{item.name}</Text>
+                </TouchableOpacity>
+              );
+            }}
           />
         </View>
         <View style={styles.container}>
@@ -108,6 +141,12 @@ const styles = StyleSheet.create({
     height: 120,
     marginLeft: 10,
     fontSize: 30,
+  },
+  autocompletesContainer: {
+    paddingTop: 0,
+    zIndex: 10,
+    width: '100%',
+    paddingHorizontal: 8,
   },
   close: {
     width: 40,
