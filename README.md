@@ -1,6 +1,12 @@
 # iTinerary
 A mobile app for building and managing travel itineraries
 
+🏖️ Motivation
+
+I'm a fan of travelling. However, most travel applications nowadays specialing in a specific aspect of travelling, for example booking hotels or flights. There isn't a centralized place for storing all your reservations and daily activities. I created this application for users to easily create, organize and manage their travel plans. 
+
+# User Experience Walkthrough
+
 ![Imgur](https://i.imgur.com/apatygz.jpg)
 
 ## To run application
@@ -11,9 +17,6 @@ A browser window should appear. Scan the QR code with your camera to open Expo o
 
 Don't forget to npm install & install the [Expo-CLI](https://facebook.github.io/react-native/docs/getting-started)!
 
-🏖️ Motivation
-
-I'm a fan of travelling. However, most travel applications nowadays specialing in a specific aspect of travelling, for example booking hotels or flights. There isn't a central place for storing all your reservations and daily activities. I created this application for users to easily create, organize and manage their travel plans. 
 
 🛒 Functionality
 
