@@ -21,28 +21,4 @@ I used react-native to build the frontend components, Google Place API for place
 ✍ Authors
 Qiong (Helen) Zhang - https://github.com/helenqiongzhang
 
-## Component Structure
 
-<App>
-  <AppEntry(Navigate to AppNavigator)>
-</App>
--------------------------
-<AppNavigator>
-  <MainTabNavigator>
-    <HomeScreen />
-    <Settings />
-  </MainTabNavigator>
-</AppNavigator>
--------------------------
-<HomeScreen>
-  <Header />
-  <Post />
-  <Post />
-  <Post />
-</HomeScreen>
--------------------------
-<Header>
-  <CreatePost />
-</Header>
-
-## Component Structure
