@@ -1,6 +1,8 @@
 # iTinerary
 A mobile app for building and managing travel itineraries
 
+![Imgur](https://i.imgur.com/apatygz.jpg)
+
 ## To run application
 
 `npm start`
